@@ -12,18 +12,39 @@
   </head>
   <body>
     <header class="site-header">
-      <div class="brand" aria-label="Campus Convenience Store">
-        <span class="brand-mark" aria-hidden="true">C</span>
-        <div>
+      <div class="brand" aria-label="Campus Convenience Store POS Terminal">
+        <span class="brand-mark" aria-hidden="true">
+          <svg
+            class="brand-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="22"
+            height="22"
+          >
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+            <path d="M7 8h10" />
+            <path d="M7 12h4" />
+          </svg>
+        </span>
+        <div class="brand-text">
           <p class="eyebrow">IT 415 · Scenario 5</p>
           <h1>Campus Convenience Store</h1>
+          <span class="brand-subtitle">Cashier POS Terminal</span>
         </div>
       </div>
 
       <div class="header-meta" aria-label="Application status">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Counter ready</span>
-        <span id="transaction-status" class="transaction-label">New transaction</span>
+        <span class="status-indicator">
+          <span class="status-dot dot-new" aria-hidden="true"></span>
+          <span class="counter-label">Counter ready</span>
+        </span>
+        <span id="transaction-status" class="transaction-label status-new">New transaction</span>
       </div>
     </header>
 
@@ -52,9 +73,26 @@
 
           <div id="cart-items" class="cart-items" aria-live="polite">
             <div class="empty-state">
-              <span class="empty-icon" aria-hidden="true">+</span>
+              <span class="empty-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  width="28"
+                  height="28"
+                >
+                  <circle cx="8" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                  <path
+                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                  />
+                </svg>
+              </span>
               <h3>Your cart is empty</h3>
-              <p>Add a product to begin a new order.</p>
+              <p>Select items from the catalog to begin an order.</p>
             </div>
           </div>
 
@@ -73,6 +111,11 @@
           </div>
 
           <form id="payment-form" novalidate>
+            <div class="payment-due-banner" aria-label="Amount due">
+              <span class="payment-due-label">Amount due</span>
+              <strong id="payment-due-value" class="payment-due-value">₱0.00</strong>
+            </div>
+
             <label for="cash-payment">Amount received</label>
             <div class="money-input">
               <span aria-hidden="true">₱</span>

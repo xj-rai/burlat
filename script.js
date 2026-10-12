@@ -20,13 +20,104 @@ function formatCurrency(amount) {
   return pesoFormatter.format(amount).replace("PHP", "₱").trim();
 }
 
+function getProductSvg(productId) {
+  switch (productId) {
+    case 1:
+      // Instant Noodles: Noodle bowl with steam wisps and chopstick
+      return `<svg class="product-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 11h16a1 1 0 0 1 1 1c0 5-3.5 8-9 8s-9-3-9-8a1 1 0 0 1 1-1Z" />
+        <path d="M8 8c0-2 1.5-2.5 1.5-4" />
+        <path d="M12 8c0-2 1.5-2.5 1.5-4" />
+        <path d="M16 8c0-2 1.5-2.5 1.5-4" />
+        <line x1="3" y1="5" x2="21" y2="8" />
+      </svg>`;
+    case 2:
+      // Potato Chips: Crisp snack bag
+      return `<svg class="product-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 3h12l-1.5 17a2 2 0 0 1-2 1.8H9.5a2 2 0 0 1-2-1.8L6 3Z" />
+        <path d="M6 6h12" />
+        <circle cx="12" cy="13" r="3.2" />
+        <path d="M10.5 13a1.5 1.5 0 0 0 3 0" />
+      </svg>`;
+    case 3:
+      // Soft Drink: Soda can with pull-ring tab
+      return `<svg class="product-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="7" y="4" width="10" height="16" rx="3" />
+        <ellipse cx="12" cy="4" rx="5" ry="1.5" />
+        <line x1="7" y1="8" x2="17" y2="8" />
+        <line x1="10" y1="2.5" x2="14" y2="2.5" />
+        <path d="M10 13a3.5 3.5 0 0 0 4 2" />
+      </svg>`;
+    case 4:
+      // Bottled Water: Water bottle with ridges
+      return `<svg class="product-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 2h4v2h-4z" />
+        <path d="M10 4v2.5l-2.5 2.5V19a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V9l-2.5-2.5V4" />
+        <line x1="7.5" y1="12" x2="16.5" y2="12" />
+        <line x1="7.5" y1="15" x2="16.5" y2="15" />
+      </svg>`;
+    case 5:
+      // Ballpen: Streamlined pen
+      return `<svg class="product-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m18 2 4 4-12 12-5 1 1-5L18 2Z" />
+        <path d="m15 5 4 4" />
+        <line x1="6" y1="19" x2="8" y2="17" />
+      </svg>`;
+    case 6:
+      // Notebook: Spiral notebook with pages
+      return `<svg class="product-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="5" y="3" width="15" height="18" rx="2" />
+        <line x1="9" y1="7" x2="16" y2="7" />
+        <line x1="9" y1="11" x2="16" y2="11" />
+        <line x1="9" y1="15" x2="14" y2="15" />
+        <line x1="5" y1="6" x2="7" y2="6" />
+        <line x1="5" y1="10" x2="7" y2="10" />
+        <line x1="5" y1="14" x2="7" y2="14" />
+        <line x1="5" y1="18" x2="7" y2="18" />
+      </svg>`;
+    default:
+      return "";
+  }
+}
+
+function updateTransactionStatus() {
+  if (typeof document === "undefined") return;
+
+  const statusLabel = document.querySelector("#transaction-status");
+  const statusDot = document.querySelector(".status-dot");
+  if (!statusLabel) return;
+
+  if (completedTransaction) {
+    statusLabel.textContent = "Payment completed";
+    statusLabel.className = "transaction-label status-completed";
+    if (statusDot) {
+      statusDot.className = "status-dot dot-completed";
+    }
+  } else if (cart.size > 0) {
+    statusLabel.textContent = "Order in progress";
+    statusLabel.className = "transaction-label status-progress";
+    if (statusDot) {
+      statusDot.className = "status-dot dot-progress";
+    }
+  } else {
+    statusLabel.textContent = "New transaction";
+    statusLabel.className = "transaction-label status-new";
+    if (statusDot) {
+      statusDot.className = "status-dot dot-new";
+    }
+  }
+}
+
 function createProductCard(product, index) {
   const article = document.createElement("article");
   article.className = "product-card";
 
   article.innerHTML = `
     <div class="product-visual" aria-hidden="true">
-      <span class="product-icon">${product.icon}</span>
+      <span class="product-icon" title="${product.name}">
+        ${getProductSvg(product.id)}
+        <span class="product-code-pill">${product.icon}</span>
+      </span>
       <span class="product-number">ITEM ${String(index + 1).padStart(2, "0")}</span>
     </div>
     <h3 class="product-name">${product.name}</h3>
@@ -156,16 +247,23 @@ function renderCart() {
   const cartItemsElement = document.querySelector("#cart-items");
   const itemCountElement = document.querySelector("#item-count");
   const orderTotalElement = document.querySelector("#order-total-value");
+  const paymentDueElement = document.querySelector("#payment-due-value");
   const paymentInput = document.querySelector("#cash-payment");
   const paymentButton = document.querySelector("#confirm-payment");
   const items = getCartItems();
   const itemCount = getItemCount();
   const paymentIsAvailable = items.length > 0 && !completedTransaction;
+  const currentTotal = getCartTotal();
 
   itemCountElement.textContent = `${itemCount} ${itemCount === 1 ? "item" : "items"}`;
-  orderTotalElement.textContent = formatCurrency(getCartTotal());
+  orderTotalElement.textContent = formatCurrency(currentTotal);
+  if (paymentDueElement) {
+    paymentDueElement.textContent = formatCurrency(currentTotal);
+  }
   paymentInput.disabled = !paymentIsAvailable;
   paymentButton.disabled = !paymentIsAvailable;
+
+  updateTransactionStatus();
 
   if (items.length === 0) {
     paymentInput.value = "";
@@ -174,9 +272,15 @@ function renderCart() {
   if (items.length === 0) {
     cartItemsElement.innerHTML = `
       <div class="empty-state">
-        <span class="empty-icon" aria-hidden="true">+</span>
+        <span class="empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <circle cx="8" cy="21" r="1"/>
+            <circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+        </span>
         <h3>Your cart is empty</h3>
-        <p>Add a product to begin a new order.</p>
+        <p>Select items from the catalog to begin an order.</p>
       </div>
     `;
     return;
@@ -313,7 +417,6 @@ function handlePaymentSubmit(event) {
     `Payment successful. Change: ${formatCurrency(result.change)}.`,
     "success",
   );
-  document.querySelector("#transaction-status").textContent = "Payment complete";
   renderProducts();
   renderCart();
   renderReceipt();
@@ -324,7 +427,6 @@ function startNewTransaction() {
   completedTransaction = null;
 
   document.querySelector("#payment-form").reset();
-  document.querySelector("#transaction-status").textContent = "New transaction";
   renderProducts();
   renderCart();
   renderReceipt();
@@ -334,7 +436,19 @@ function startNewTransaction() {
 function handleProductClick(event) {
   const addButton = event.target.closest("[data-product-id]");
   if (!addButton) return;
-  addToCart(Number(addButton.dataset.productId));
+  const productId = Number(addButton.dataset.productId);
+  addToCart(productId);
+
+  // Tactile feedback on the clicked button
+  addButton.classList.add("added-feedback");
+  const originalText = addButton.textContent.trim();
+  addButton.textContent = "Added! ✓";
+  setTimeout(() => {
+    addButton.classList.remove("added-feedback");
+    if (!completedTransaction) {
+      addButton.textContent = originalText;
+    }
+  }, 600);
 }
 
 function handleCartClick(event) {
