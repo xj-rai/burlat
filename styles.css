@@ -1,0 +1,461 @@
+:root {
+  color-scheme: light;
+  --ink: #17201c;
+  --muted: #67716b;
+  --surface: #ffffff;
+  --canvas: #f3f1e9;
+  --line: #deddd4;
+  --green: #174d3a;
+  --green-dark: #0e3528;
+  --lime: #d8ee72;
+  --lime-soft: #f0f7ce;
+  --orange: #e8763f;
+  --shadow: 0 18px 45px rgba(29, 49, 40, 0.1);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(216, 238, 114, 0.22), transparent 27rem),
+    var(--canvas);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.15rem clamp(1.25rem, 4vw, 4rem);
+  color: #fff;
+  background: var(--green);
+  border-bottom: 4px solid var(--lime);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2.85rem;
+  height: 2.85rem;
+  place-items: center;
+  color: var(--green-dark);
+  font-size: 1.35rem;
+  font-weight: 900;
+  background: var(--lime);
+  border-radius: 0.8rem 0.8rem 0.8rem 0.25rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.22rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.brand .eyebrow {
+  color: #c9d8d1;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #dbe7e1;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.status-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--lime);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(216, 238, 114, 0.15);
+}
+
+.transaction-label {
+  margin-left: 0.45rem;
+  padding: 0.45rem 0.7rem;
+  color: var(--green-dark);
+  background: var(--lime);
+  border-radius: 999px;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(19rem, 0.75fr);
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1.25rem, 4vw, 4rem);
+}
+
+.catalog-panel,
+.checkout-panel {
+  min-width: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-heading.compact {
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-note,
+.item-count {
+  margin-bottom: 0.15rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.item-count {
+  padding: 0.35rem 0.6rem;
+  color: var(--green);
+  background: var(--lime-soft);
+  border-radius: 999px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  display: flex;
+  min-height: 13rem;
+  flex-direction: column;
+  padding: 1.1rem;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  box-shadow: 0 7px 20px rgba(29, 49, 40, 0.045);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.product-visual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 4.7rem;
+  margin: -1.1rem -1.1rem 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--lime-soft), #f8f8f2);
+}
+
+.product-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  color: var(--green);
+  font-size: 1.35rem;
+  font-weight: 900;
+  background: #fff;
+  border: 1px solid rgba(23, 77, 58, 0.14);
+  border-radius: 0.85rem;
+}
+
+.product-number {
+  color: rgba(23, 77, 58, 0.46);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.product-name {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.product-price {
+  margin-bottom: 1rem;
+  color: var(--orange);
+  font-size: 1.15rem;
+  font-weight: 850;
+}
+
+.add-button,
+.primary-button {
+  width: 100%;
+  margin-top: auto;
+  padding: 0.72rem 0.8rem;
+  color: #fff;
+  font-weight: 800;
+  background: var(--green);
+  border: 0;
+  border-radius: 0.7rem;
+}
+
+.add-button:disabled,
+.primary-button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.checkout-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-section {
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  box-shadow: 0 7px 20px rgba(29, 49, 40, 0.04);
+}
+
+.order-section {
+  min-height: 18rem;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 9rem;
+  place-items: center;
+  align-content: center;
+  padding: 1rem;
+  color: var(--muted);
+  text-align: center;
+  border: 1px dashed #c8cdc8;
+  border-radius: 0.8rem;
+}
+
+.empty-state p,
+.receipt-placeholder,
+.feature-note {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.empty-icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.45rem;
+  place-items: center;
+  color: var(--green);
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: var(--lime-soft);
+  border-radius: 50%;
+}
+
+.order-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.order-total span {
+  font-weight: 750;
+}
+
+.order-total strong {
+  color: var(--green);
+  font-size: 1.65rem;
+}
+
+.payment-section label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.money-input {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.85rem;
+  background: #f8f8f4;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+}
+
+.money-input span {
+  color: var(--green);
+  font-weight: 850;
+}
+
+.money-input input {
+  width: 100%;
+  padding: 0.75rem 0;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.primary-button {
+  margin-top: 0.8rem;
+}
+
+.feature-note {
+  margin-top: 0.65rem;
+  text-align: center;
+}
+
+.receipt-section {
+  color: #e8f1ec;
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+
+.receipt-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.receipt-section .eyebrow,
+.receipt-placeholder {
+  color: #b9ccc3;
+}
+
+.receipt-mark {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  color: var(--green-dark);
+  font-weight: 900;
+  background: var(--lime);
+  border-radius: 0.6rem;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1.25rem, 4vw, 4rem) 1.5rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.site-footer p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .order-section {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header,
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-meta {
+    flex-wrap: wrap;
+  }
+
+  .transaction-label {
+    margin-left: 0;
+  }
+
+  .product-grid,
+  .checkout-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .order-section {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 460px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading:not(.compact) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

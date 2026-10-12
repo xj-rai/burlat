@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Campus Convenience Store point-of-sale interface for the IT 415 practical examination."
+    />
+    <title>Campus Convenience Store POS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand" aria-label="Campus Convenience Store">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <div>
+          <p class="eyebrow">IT 415 · Scenario 5</p>
+          <h1>Campus Convenience Store</h1>
+        </div>
+      </div>
+
+      <div class="header-meta" aria-label="Application status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Counter ready</span>
+        <span class="transaction-label">New transaction</span>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="catalog-panel" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Product catalog</p>
+            <h2 id="catalog-title">Choose an item</h2>
+          </div>
+          <p class="section-note">6 products available</p>
+        </div>
+
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </section>
+
+      <aside class="checkout-panel" aria-label="Order and payment area">
+        <section class="panel-section order-section" aria-labelledby="order-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Current order</p>
+              <h2 id="order-title">Order summary</h2>
+            </div>
+            <span class="item-count">0 items</span>
+          </div>
+
+          <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">+</span>
+            <h3>Your cart is empty</h3>
+            <p>Add a product to begin a new order.</p>
+          </div>
+
+          <div class="order-total" aria-label="Order total">
+            <span>Total</span>
+            <strong>₱0.00</strong>
+          </div>
+        </section>
+
+        <section class="panel-section payment-section" aria-labelledby="payment-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Cash payment</p>
+              <h2 id="payment-title">Payment</h2>
+            </div>
+          </div>
+
+          <label for="cash-payment">Amount received</label>
+          <div class="money-input">
+            <span aria-hidden="true">₱</span>
+            <input
+              id="cash-payment"
+              type="number"
+              inputmode="decimal"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              disabled
+            />
+          </div>
+          <button class="primary-button" type="button" disabled>
+            Confirm payment
+          </button>
+          <p class="feature-note">Payment becomes available after an item is added.</p>
+        </section>
+
+        <section class="panel-section receipt-section" aria-labelledby="receipt-title">
+          <div class="receipt-heading">
+            <div>
+              <p class="eyebrow">Transaction record</p>
+              <h2 id="receipt-title">Digital receipt</h2>
+            </div>
+            <span class="receipt-mark" aria-hidden="true">#</span>
+          </div>
+          <p class="receipt-placeholder">
+            A receipt will appear here after a successful payment.
+          </p>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <p>Campus Convenience Store POS</p>
+      <p>Products and prices are stored locally for this examination.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
