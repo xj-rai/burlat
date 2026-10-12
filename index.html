@@ -47,18 +47,20 @@
               <p class="eyebrow">Current order</p>
               <h2 id="order-title">Order summary</h2>
             </div>
-            <span class="item-count">0 items</span>
+            <span id="item-count" class="item-count">0 items</span>
           </div>
 
-          <div class="empty-state">
-            <span class="empty-icon" aria-hidden="true">+</span>
-            <h3>Your cart is empty</h3>
-            <p>Add a product to begin a new order.</p>
+          <div id="cart-items" class="cart-items" aria-live="polite">
+            <div class="empty-state">
+              <span class="empty-icon" aria-hidden="true">+</span>
+              <h3>Your cart is empty</h3>
+              <p>Add a product to begin a new order.</p>
+            </div>
           </div>
 
           <div class="order-total" aria-label="Order total">
             <span>Total</span>
-            <strong>₱0.00</strong>
+            <strong id="order-total-value">₱0.00</strong>
           </div>
         </section>
 
@@ -86,7 +88,7 @@
           <button class="primary-button" type="button" disabled>
             Confirm payment
           </button>
-          <p class="feature-note">Payment becomes available after an item is added.</p>
+          <p class="feature-note">Payment will be enabled in Milestone 3.</p>
         </section>
 
         <section class="panel-section receipt-section" aria-labelledby="receipt-title">
