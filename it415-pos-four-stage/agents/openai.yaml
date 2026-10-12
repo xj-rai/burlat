@@ -1,0 +1,4 @@
+interface:
+  display_name: "IT 415 POS Four-Stage"
+  short_description: "Build Scenario 5 POS one milestone at a time"
+  default_prompt: "Use $it415-pos-four-stage to complete only the next Scenario 5 POS milestone and produce its truthful four-stage AI record."
