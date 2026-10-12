@@ -23,7 +23,7 @@
       <div class="header-meta" aria-label="Application status">
         <span class="status-dot" aria-hidden="true"></span>
         <span>Counter ready</span>
-        <span class="transaction-label">New transaction</span>
+        <span id="transaction-status" class="transaction-label">New transaction</span>
       </div>
     </header>
 
@@ -72,23 +72,28 @@
             </div>
           </div>
 
-          <label for="cash-payment">Amount received</label>
-          <div class="money-input">
-            <span aria-hidden="true">₱</span>
-            <input
-              id="cash-payment"
-              type="number"
-              inputmode="decimal"
-              placeholder="0.00"
-              min="0"
-              step="0.01"
-              disabled
-            />
-          </div>
-          <button class="primary-button" type="button" disabled>
-            Confirm payment
-          </button>
-          <p class="feature-note">Payment will be enabled in Milestone 3.</p>
+          <form id="payment-form" novalidate>
+            <label for="cash-payment">Amount received</label>
+            <div class="money-input">
+              <span aria-hidden="true">₱</span>
+              <input
+                id="cash-payment"
+                type="number"
+                inputmode="decimal"
+                placeholder="0.00"
+                min="0"
+                step="0.01"
+                aria-describedby="payment-message"
+                disabled
+              />
+            </div>
+            <button id="confirm-payment" class="primary-button" type="submit" disabled>
+              Confirm payment
+            </button>
+            <p id="payment-message" class="payment-message" role="status" aria-live="polite">
+              Add an item to begin payment.
+            </p>
+          </form>
         </section>
 
         <section class="panel-section receipt-section" aria-labelledby="receipt-title">
@@ -99,9 +104,14 @@
             </div>
             <span class="receipt-mark" aria-hidden="true">#</span>
           </div>
-          <p class="receipt-placeholder">
-            A receipt will appear here after a successful payment.
-          </p>
+          <div id="receipt-content" class="receipt-content" aria-live="polite">
+            <p class="receipt-placeholder">
+              A receipt will appear here after a successful payment.
+            </p>
+          </div>
+          <button id="new-transaction" class="new-transaction-button hidden" type="button">
+            Start new transaction
+          </button>
         </section>
       </aside>
     </main>

@@ -387,6 +387,12 @@ input:focus-visible {
   text-decoration: underline;
 }
 
+.remove-button:disabled {
+  color: #9ca49f;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
 .empty-state {
   display: grid;
   min-height: 9rem;
@@ -457,6 +463,11 @@ input:focus-visible {
   border-radius: 0.7rem;
 }
 
+.money-input:focus-within {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(232, 118, 63, 0.14);
+}
+
 .money-input span {
   color: var(--green);
   font-weight: 850;
@@ -475,9 +486,27 @@ input:focus-visible {
   margin-top: 0.8rem;
 }
 
-.feature-note {
+.feature-note,
+.payment-message {
   margin-top: 0.65rem;
   text-align: center;
+}
+
+.payment-message {
+  min-height: 2.5rem;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.payment-message.error {
+  color: #a13f2c;
+}
+
+.payment-message.success {
+  color: var(--green);
+  font-weight: 750;
 }
 
 .receipt-section {
@@ -507,6 +536,107 @@ input:focus-visible {
   font-weight: 900;
   background: var(--lime);
   border-radius: 0.6rem;
+}
+
+.receipt-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px dashed rgba(232, 241, 236, 0.28);
+}
+
+.receipt-meta span {
+  color: #b9ccc3;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.receipt-meta strong {
+  color: var(--lime);
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.receipt-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px dashed rgba(232, 241, 236, 0.28);
+}
+
+.receipt-line,
+.receipt-totals div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.receipt-line {
+  color: #d6e2dc;
+  font-size: 0.76rem;
+}
+
+.receipt-line strong {
+  flex: 0 0 auto;
+  color: #fff;
+}
+
+.receipt-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding-top: 0.9rem;
+}
+
+.receipt-totals dt,
+.receipt-totals dd {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.receipt-totals dd {
+  font-weight: 800;
+}
+
+.receipt-totals .change-row {
+  margin-top: 0.35rem;
+  padding-top: 0.65rem;
+  color: var(--lime);
+  border-top: 1px solid rgba(232, 241, 236, 0.2);
+}
+
+.receipt-totals .change-row dt,
+.receipt-totals .change-row dd {
+  font-size: 0.95rem;
+  font-weight: 850;
+}
+
+.new-transaction-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.72rem 0.8rem;
+  color: var(--green-dark);
+  font-weight: 850;
+  background: var(--lime);
+  border: 0;
+  border-radius: 0.7rem;
+  cursor: pointer;
+}
+
+.new-transaction-button:hover,
+.new-transaction-button:focus-visible {
+  background: #e3f49b;
+}
+
+.hidden {
+  display: none;
 }
 
 .site-footer {
